@@ -60,13 +60,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\opengl\glfw-3.2.1.bin.WIN32\include;C:\opengl\glm-0.9.8.1\glm;C:\opengl\glew-1.12.0\include;C:\opengl\Simple OpenGL Image Library\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\include;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\include;\\server5\students\staff\abijosh\opengl\dev\Libraries\glm-0.9.6.3\glm;\\server5\students\staff\abijosh\opengl\dev\Libraries\Simple OpenGL Image Library\src;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\opengl\glew-1.12.0\lib\Release\Win32;C:\opengl\glfw-3.2.1.bin.WIN32\lib-vc2013;C:\opengl\Simple OpenGL Image Library\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\lib-vc2015;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\lib\Release\Win32;\\server5\students\staff\abijosh\opengl\dev\Libraries\Simple OpenGL Image Library\lib;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D\Build\lib\vs2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

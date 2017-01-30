@@ -43,16 +43,17 @@ void createScene()
 
 int main(){
 
-	icatGame.initializeWindow();
-	createScene();
-	
-	do{
-				
-		// update game(deltaTime);
-		icatGame.updateWindow();
+	if (icatGame.initializeWindow()) {
+		createScene();
 
-	} while (!icatGame.ifWindowShouldClose());
+		do {
 
-	glfwTerminate();
+			// update game(deltaTime);
+			icatGame.updateWindow();
+
+		} while (!icatGame.ifWindowShouldClose());
+		icatGame.terminate();
+	}
+
 	return 0;
 }

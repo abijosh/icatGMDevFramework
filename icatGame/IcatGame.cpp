@@ -13,11 +13,12 @@ IcatGame::~IcatGame()
 
 
 
-void IcatGame::initializeWindow(int width, int height, const char* title)
+bool IcatGame::initializeWindow(int width, int height, const char* title)
 {
 
 	if (!glfwInit()){
 		fprintf(stderr, "Failed to initialize glfw!!!");
+		return false;
 		
 	}
 
@@ -25,6 +26,7 @@ void IcatGame::initializeWindow(int width, int height, const char* title)
 	if (!displayManager.createDisplay(width, height, title)){
 		fprintf(stderr, "Failed to create GLFW window!!!");
 		glfwTerminate();
+		return false;
 	}
 	
 	displayManager.setCurrentContext();
@@ -40,7 +42,7 @@ void IcatGame::initializeWindow(int width, int height, const char* title)
 	glfwSetMouseButtonCallback(displayManager.getWindowPointer(), UserInteraction::mouse_button_callback);
 	//glfwSetWindowSizeCallback(displayManager.getWindowPointer(), IcatGame::windowCallBack);
 
-	
+	return true;
 }
 
 Entity* IcatGame::createEntity(const char* filename){

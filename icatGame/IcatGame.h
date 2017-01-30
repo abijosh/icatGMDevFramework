@@ -6,8 +6,9 @@ public:
 	IcatGame();
 	~IcatGame();
 
-	void initializeWindow(int width = 1024, int height = 720, const char* title = "Icat IM OGL Wrapper Library");
+	bool initializeWindow(int width = 1024, int height = 720, const char* title = "Icat IM OGL Wrapper Library");
 	bool ifWindowShouldClose(){ return displayManager.isCloseRequested(); }
+	void terminate() { glfwTerminate(); }
 
 	Entity* createEntity(const char* filename);
 
