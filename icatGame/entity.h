@@ -2,8 +2,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <Box2D/Box2D.h>
-
 #include "RawModel.h"
 #include "Shader.h"
 #include "Material.h"
@@ -21,12 +19,7 @@ public:
 	~Entity();
 
 	void updateTransformMatrix();
-
-	void setBox2DReferences(b2Body* dynamicBody){
-		position.x = dynamicBody->GetPosition().x;
-		position.y = dynamicBody->GetPosition().y;
-	}
-
+	
 	virtual void setPosition(float x, float y, float z){
 		position.x = x;
 		position.y = y;

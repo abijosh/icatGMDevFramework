@@ -27,7 +27,6 @@
 #include "Material.h"
 #include "TexturedModel.h"
 #include "Entity.h"
-#include "PhysicsEntity.h"
 #include "BufferLoader.h"
 #include "ModelLoader.h"
 #include "DisplayManager.h"
