@@ -9,6 +9,8 @@ TexturedModel::TexturedModel(RawModel* RawModelPtr, Material* MaterialPtr)
 
 TexturedModel::~TexturedModel()
 {
+	delete mp_RawModel;
+	delete mp_Material;
 }
 
 RawModel* TexturedModel::getRawModel(){

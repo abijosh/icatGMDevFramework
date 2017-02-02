@@ -12,12 +12,25 @@ ModelLoader::~ModelLoader()
 
 Entity* ModelLoader::loadModel(const char* fileName){
 	int width, height;
+	Entity* retVal = nullptr;
 	int textureID = bufferLoader.loadTexture(fileName, &width, &height);
-	TexturedModel* texturedQuad = createTexturedQuad((float)width, (float)height, new Material(textureID, ShaderPtr));
+	if (textureID >= 0) {
+		TexturedModel* texturedQuad = createTexturedQuad((float)width, (float)height, new Material(textureID, ShaderPtr));
 
-	Entity* retVal = new Entity(texturedQuad, glm::vec3(0.0f), glm::vec3(1.0f));
-	Entitys.push_back(retVal);
+		retVal = new(getAllignedSpace(sizeof(Entity), 16)) Entity(texturedQuad, glm::vec3(0.0f), glm::vec3(1.0f));
+
+		Entitys.push_back(retVal);
+	}
 	return retVal;
+}
+
+
+void* ModelLoader::getAllignedSpace(size_t objectSize, size_t alignment) {
+	return(_aligned_malloc(objectSize, alignment));
+}
+
+void ModelLoader::deallocAlignedMemory(void* ptr) {
+	_aligned_free(ptr);
 }
 
 void ModelLoader::createBasicShader() {
@@ -69,5 +82,18 @@ TexturedModel* ModelLoader::createTexturedQuad(float width, float height, Materi
 
 	RawModel* RawModelPtr = bufferLoader.loadToBuffer(positions, uv, indices);
 
+	positions.clear();
+	uv.clear();
+	indices.clear();
+
 	return new TexturedModel(RawModelPtr, MaterialPtr);
+}
+
+void ModelLoader::freeMemory() {
+	delete ShaderPtr;
+	bufferLoader.freeBuffer();
+	for (Entity* e : Entitys) {
+		e->~Entity();
+		deallocAlignedMemory(e);
+	}
 }

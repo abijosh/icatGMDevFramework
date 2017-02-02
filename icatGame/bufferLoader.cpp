@@ -7,11 +7,10 @@ BufferLoader::BufferLoader()
 
 BufferLoader::~BufferLoader()
 {
-	//need to delete buffers
 }
 
 RawModel* BufferLoader::loadToBuffer(std::vector<float> positions, std::vector<float> uv, std::vector<int> indices){
-	unsigned int vaoID = createVAO();
+	GLuint vaoID = createVAO();
 	storeToVBO(positions, 3, 0);
 	storeToVBO(uv, 2, 1);
 	storeElementsToVBO(indices);
@@ -20,16 +19,16 @@ RawModel* BufferLoader::loadToBuffer(std::vector<float> positions, std::vector<f
 	return new RawModel(vaoID, indices.size() / 3);
 }
 
-unsigned int BufferLoader::createVAO(){
-	unsigned int vaoID;
+GLuint BufferLoader::createVAO(){
+	GLuint vaoID;
 	glGenVertexArrays(1, &vaoID);
 	glBindVertexArray(vaoID);
 	return vaoID;
 }
 
-void BufferLoader::storeToVBO(std::vector<float> data, unsigned int length, unsigned int index){
+void BufferLoader::storeToVBO(std::vector<float> data, GLuint length, GLuint index){
 
-	unsigned int vboID;
+	GLuint vboID;
 	glGenBuffers(1, &vboID);
 
 	float* floatBufferPtr = new float[data.size()];
@@ -51,7 +50,7 @@ void BufferLoader::storeToVBO(std::vector<float> data, unsigned int length, unsi
 }
 
 void BufferLoader::storeElementsToVBO(std::vector<int> indices){
-	unsigned int vboID;
+	GLuint vboID;
 	glGenBuffers(1, &vboID);
 
 	int* intBufferPtr = new int[indices.size()];
@@ -72,8 +71,8 @@ void BufferLoader::unbindVAO(){
 	glBindVertexArray(0);
 }
 
-unsigned int BufferLoader::loadTexture(const char* filename, int *width, int *height){
-	GLuint textureID;
+GLuint BufferLoader::loadTexture(const char* filename, int *width, int *height){
+	GLuint textureID = -1;
 	unsigned char * image;
 
 	glGenTextures(1, &textureID);
@@ -88,12 +87,29 @@ unsigned int BufferLoader::loadTexture(const char* filename, int *width, int *he
 
 	// Load, create texture and generate mipmaps
 	image = SOIL_load_image(filename, width, height, 0, SOIL_LOAD_RGBA);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, *width, *height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(image);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	if (image) {
+		std::cout << std::endl << "Loaded: " << filename << std::endl;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, *width, *height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		SOIL_free_image_data(image);
+		glBindTexture(GL_TEXTURE_2D, 0);
 
-	textureList.push_back(textureID);
+		textureList.push_back(textureID);
+	}
+	else
+		std::cout << std::endl << "Cannot Load: " << filename << std::endl << "Check the filename / if the file exists";
+
+
 
 	return textureID;
+}
+
+void BufferLoader::freeBuffer() {
+	glDeleteBuffers(vboList.size(), &vboList[0]);
+	glDeleteVertexArrays(vaoList.size(), &vaoList[0]);
+	glDeleteTextures(textureList.size(), &textureList[0]);
+
+	vboList.clear();
+	vaoList.clear();
+	textureList.clear();
 }

@@ -24,8 +24,9 @@ public:
     void setAspectRatio(float aspectRatio);
 
 private:
-	float shakeSpeed ,shakeTime;
 	void normalizeAngles();
+
+private:
 	glm::vec3 m_position;
 	glm::vec3 m_upVector;
 	int windowWidth, windowHeight;

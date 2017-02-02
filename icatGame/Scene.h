@@ -6,14 +6,10 @@ public:
 	Scene();
 	~Scene();
 
-	void addEntity(Entity* Entity);
+	void addEntity(Entity* entity);
 	std::vector<Entity*>& getEntities();
-	TexturedModel* getModelPointer(){
-		return pTexturedModel;
-	}
 
 private:
 	std::vector<Entity*> entities;
-	TexturedModel *pTexturedModel;
 };
 

@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BB2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bufferLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -65,9 +62,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BB2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bufferLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

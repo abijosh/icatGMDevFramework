@@ -71,7 +71,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BB2D.h" />
     <ClInclude Include="bufferLoader.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="displayManager.h" />
@@ -89,7 +88,6 @@
     <ClInclude Include="userInteraction.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BB2D.cpp" />
     <ClCompile Include="bufferLoader.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="displayManager.cpp" />

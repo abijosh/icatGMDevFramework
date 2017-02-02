@@ -19,6 +19,7 @@ Entity::Entity(TexturedModel *TexturedModelPtr,
 
 Entity::~Entity()
 {
+	delete pTexturedModel;
 }
 
 void Entity::updateTransformMatrix() {

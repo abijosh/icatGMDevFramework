@@ -7,6 +7,7 @@ public:
 
 	RawModel* loadToBuffer(std::vector<float> positions, std::vector<float> uv, std::vector<int> indices);
 	unsigned int loadTexture(const char* filename, int *width, int *height);
+	void freeBuffer();
 
 private:
 	unsigned int createVAO();
@@ -15,7 +16,7 @@ private:
 	void unbindVAO();
 
 private:
-	std::vector<int> vboList, vaoList, textureList;
+	std::vector<GLuint> vboList, vaoList, textureList;
 
 };
 

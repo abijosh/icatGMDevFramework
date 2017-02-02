@@ -12,6 +12,7 @@ Renderer::Renderer()
 
 Renderer::~Renderer()
 {
+	delete m_pCamera;
 }
 
 void Renderer::setWindowPointer(GLFWwindow* windowPointer){

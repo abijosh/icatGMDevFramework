@@ -19,7 +19,7 @@ bool DisplayManager::createDisplay(int width, int height, const char* title){
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	m_pWindow = glfwCreateWindow(WIDTH, HEIGHT, title, glfwGetPrimaryMonitor(), nullptr);
+	m_pWindow = glfwCreateWindow(WIDTH, HEIGHT, title, nullptr, nullptr);
 	//good practice again!!!
 	if (m_pWindow){
 		return true;
@@ -36,7 +36,7 @@ GLFWwindow* DisplayManager::getWindowPointer(){
 }
 
 bool DisplayManager::isCloseRequested() {
-	return glfwWindowShouldClose(m_pWindow);
+	return (glfwWindowShouldClose(m_pWindow) != 0);
 }
 
 void DisplayManager::closeWindow() {

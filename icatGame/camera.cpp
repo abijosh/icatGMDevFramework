@@ -4,16 +4,16 @@
 #define MAX_SHAKE_TIME 1
 Camera::Camera(int windowWidth, int windowHeight)
 {
-	m_position = glm::vec3(0.0, 0.0, 700.0);
-	m_horizontalAngle = 0.0;
-	m_verticalAngle = 0.0;
-	m_FOV = 45.0;
-	m_nearplane = 0.1;
-	m_farplane = 1000;
+	m_position = glm::vec3(0.0f, 0.0f, 700.0f);
+	m_horizontalAngle = 0.0f;
+	m_verticalAngle = 0.0f;
+	m_FOV = 45.0f;
+	m_nearplane = 0.1f;
+	m_farplane = 1000.0f;
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
 
-	m_aspectratio = windowWidth / windowHeight;
+	m_aspectratio = (float)windowWidth / (float)windowHeight;
 	m_upVector = glm::vec3(0, 1, 0);
 }
 Camera::~Camera()

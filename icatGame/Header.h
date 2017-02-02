@@ -17,9 +17,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-//Headers for Physics
-#include <Box2D/Box2D.h>
-
 //Headers for loading sprites
 #include <SOIL.h>
 
@@ -29,7 +26,6 @@
 #include "RawModel.h"
 #include "Material.h"
 #include "TexturedModel.h"
-#include "BB2D.h"
 #include "Entity.h"
 #include "PhysicsEntity.h"
 #include "BufferLoader.h"

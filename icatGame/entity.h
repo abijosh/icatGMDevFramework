@@ -8,7 +8,6 @@
 #include "Shader.h"
 #include "Material.h"
 #include "TexturedModel.h"
-#include "BB2D.h"
 
 #pragma once
 class Entity

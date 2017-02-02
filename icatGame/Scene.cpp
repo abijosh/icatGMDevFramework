@@ -11,9 +11,10 @@ Scene::~Scene()
 		delete e;
 }
 
-void Scene::addEntity(Entity* Entity)
+void Scene::addEntity(Entity* entity)
 {
-	entities.push_back(Entity);
+	if (entity)
+		entities.push_back(entity);
 }
 
 std::vector<Entity*>& Scene::getEntities()
