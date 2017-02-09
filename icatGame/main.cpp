@@ -3,25 +3,19 @@
 
 
 #include "IcatGame.h"
+#include "Game.h"
 
 IcatGame icatGame;
+Game game(&icatGame);
 
-void createScene()
-{
-
-	Scene *scene = new Scene();
-	scene->addEntity(icatGame.createEntity("./assets/Icat.png"));
-	icatGame.setScenePtr(scene);
+void initGame(){
+	game.initLevel(1);
 }
 
-
 int main(){
-
-	if (icatGame.initializeWindow()) {
-		createScene();
-
+	if (icatGame.initializeWindow(1280, 720)) {
+		initGame();
 		do {
-
 			// update game(deltaTime);
 			icatGame.updateWindow();
 

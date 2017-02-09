@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -45,11 +45,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\include;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\include;\\server5\students\staff\abijosh\opengl\dev\Libraries\glm-0.9.6.3\glm;\\server5\students\staff\abijosh\opengl\dev\Libraries\Simple OpenGL Image Library\src;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\include;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\include;\\server5\students\staff\abijosh\opengl\dev\Libraries\glm-0.9.6.3\glm;\\server5\students\staff\abijosh\opengl\dev\Libraries\SOIL\src;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\lib-vc2015;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\lib\Release\Win32;\\server5\students\staff\abijosh\opengl\dev\Libraries\Simple OpenGL Image Library\lib;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D\Build\lib\vs2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\lib-vc2013;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\lib\Release\Win32;\\server5\students\staff\abijosh\opengl\dev\Libraries\SOIL\lib;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D\Build\lib\vs2013;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;soil.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -74,8 +74,10 @@
     <ClInclude Include="bufferLoader.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="displayManager.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="IcatGame.h" />
+    <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="material.h" />
     <ClInclude Include="modelLoader.h" />
     <ClInclude Include="PhysicsEntity.h" />
@@ -91,7 +93,9 @@
     <ClCompile Include="bufferLoader.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="displayManager.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="IcatGame.cpp" />
+    <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="modelLoader.cpp" />

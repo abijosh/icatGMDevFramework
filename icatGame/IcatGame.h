@@ -6,7 +6,7 @@ public:
 	IcatGame();
 	~IcatGame();
 
-	bool initializeWindow(int width = 1024, int height = 720, const char* title = "Icat IM OGL Wrapper Library");
+	bool initializeWindow(int width = 1280, int height = 720, const char* title = "Icat IM OGL Wrapper Library");
 	bool ifWindowShouldClose(){ return displayManager.isCloseRequested(); }
 	void terminate();
 
@@ -17,6 +17,7 @@ public:
 	}
 	
 	float getDeltaTime(){ return deltaTime; }
+	float getElapsedTime(){ return glfwGetTime(); }
 
 	void setScenePtr(Scene* scenePtr)	{	this->scenePtr = scenePtr;	}
 	void updateWindow();
