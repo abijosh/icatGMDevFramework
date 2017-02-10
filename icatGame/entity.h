@@ -20,6 +20,8 @@ public:
 				 , glm::vec3 rotateAxis = glm::vec3(0, 0, 1));
 	~Entity();
 
+	virtual void update(float deltaTime){}
+
 	void updateTransformMatrix();
 
 	void setBox2DReferences(b2Body* dynamicBody){
@@ -99,11 +101,13 @@ public:
 	TexturedModel* getModelPointer();
 	glm::mat4& getTransformMatrix();
 
-private:
+protected:
 	bool active;
 	glm::vec3 position, scale, rotateAxis;
 	float rotateAngle;
 	bool matrixUpdated;
+
+private:
 	glm::mat4 transformMatrix;
 	TexturedModel *pTexturedModel;
 

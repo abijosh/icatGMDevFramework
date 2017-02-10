@@ -6,6 +6,7 @@
 
 #include "IcatGame.h"
 #include "Scene.h"
+#include "PhysicsEntity.h"
 
 class LevelLoader
 {
@@ -19,9 +20,9 @@ private:
 	Scene* createScene(std::string levelData);
 	std::string readLevelData(int levelNum);
 
-	Entity *createBrick(const glm::vec3& position);
-	Entity *createPlatform(const glm::vec3& position);
-	Entity *createPlayer(const glm::vec3& position);
+	PhysicsEntity *createBrick(const glm::vec3& position);
+	PhysicsEntity *createPlatform(const glm::vec3& position);
+	PhysicsEntity *createPlayer(const glm::vec3& position);
 
 private:
 	IcatGame* icatGame;

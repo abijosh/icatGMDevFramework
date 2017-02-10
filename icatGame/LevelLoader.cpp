@@ -71,17 +71,17 @@ Scene* LevelLoader::createScene(std::string levelData){
 	return scene;
 }
 
-Entity *LevelLoader::createBrick(const glm::vec3& position){
+PhysicsEntity *LevelLoader::createBrick(const glm::vec3& position){
 	Entity* e = icatGame->createEntity("./assets/environment/brick.png");
 	e->setPosition(position);
 	return e;
 }
-Entity *LevelLoader::createPlatform(const glm::vec3& position){
+PhysicsEntity *LevelLoader::createPlatform(const glm::vec3& position){
 	Entity* e = icatGame->createEntity("./assets/environment/platform.png");
 	e->setPosition(position);
 	return e;
 }
-Entity *LevelLoader::createPlayer(const glm::vec3& position){
+PhysicsEntity *LevelLoader::createPlayer(const glm::vec3& position){
 	Entity* e = icatGame->createEntity("./assets/gamePlay/player/idle/01.png");
 	e->setPosition(position);
 	return e;

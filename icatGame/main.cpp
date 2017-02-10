@@ -9,7 +9,7 @@ IcatGame icatGame;
 Game game(&icatGame);
 
 void initGame(){
-	game.initLevel(1);
+	game.initLevel(3);
 }
 
 int main(){
