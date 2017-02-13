@@ -11,7 +11,8 @@ LevelLoader::~LevelLoader()
 {
 }
 
-Scene* LevelLoader::load(int levelNum){
+Scene* LevelLoader::load(int levelNum, b2World* worldPtr){
+	currentWorldPtr = worldPtr;
 	std::string levelData = readLevelData(levelNum);
 	if (levelData != "")
 		return createScene(levelData);
@@ -72,17 +73,40 @@ Scene* LevelLoader::createScene(std::string levelData){
 }
 
 PhysicsEntity *LevelLoader::createBrick(const glm::vec3& position){
-	Entity* e = icatGame->createEntity("./assets/environment/brick.png");
-	e->setPosition(position);
-	return e;
+	Entity* entity = icatGame->createEntity("./assets/environment/brick.png");
+	entity->setPosition(position);
+	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_staticBody);
+	return new PhysicsEntity(entity, physicsBody);
 }
 PhysicsEntity *LevelLoader::createPlatform(const glm::vec3& position){
-	Entity* e = icatGame->createEntity("./assets/environment/platform.png");
-	e->setPosition(position);
-	return e;
+	Entity* entity = icatGame->createEntity("./assets/environment/platform.png");
+	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_dynamicBody);
+	entity->setPosition(position);
+	return new PhysicsEntity(entity, physicsBody);
 }
 PhysicsEntity *LevelLoader::createPlayer(const glm::vec3& position){
-	Entity* e = icatGame->createEntity("./assets/gamePlay/player/idle/01.png");
-	e->setPosition(position);
-	return e;
+	Entity* entity = icatGame->createEntity("./assets/gamePlay/player/idle/01.png");
+	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_dynamicBody);
+	entity->setPosition(position);
+	return new PhysicsEntity(entity, physicsBody);
+}
+
+
+b2Body* LevelLoader::createPhysicsBody(float x, float y, b2BodyType bodyType) {
+
+	b2BodyDef bodyDef;
+	bodyDef.type = bodyType;
+	bodyDef.position.Set(x, y);
+	b2Body* physicsBody = currentWorldPtr->CreateBody(&bodyDef);
+
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(20.0f, 20.0f);
+
+	b2FixtureDef boxFixtureDef;
+	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.density = 1;
+
+	physicsBody->CreateFixture(&boxFixtureDef);
+
+	return physicsBody;
 }

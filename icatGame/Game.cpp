@@ -14,7 +14,18 @@ Game::~Game()
 }
 
 void Game::initLevel(int levelNum){
-	currentScene = levelLoader->load(levelNum);
+	physicsWorld = new b2World(gravity);
+	currentScene = levelLoader->load(levelNum, physicsWorld);
 	if (currentScene)
 		icatGame->setScenePtr(currentScene);
+}
+
+void Game::update(){
+	auto deltaTime = icatGame->getDeltaTime();
+	physicsWorld->Step(0.2f, 8, 3);
+	auto es = currentScene->getEntities();
+	for (auto* e : es){
+		e->update(deltaTime);
+	}
+	
 }

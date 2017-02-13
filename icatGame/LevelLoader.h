@@ -14,7 +14,7 @@ public:
 	LevelLoader(IcatGame* icatGame);
 	~LevelLoader();
 
-	Scene* load(int levelNum);
+	Scene* load(int levelNum, b2World* worldPtr);
 
 private:
 	Scene* createScene(std::string levelData);
@@ -24,7 +24,10 @@ private:
 	PhysicsEntity *createPlatform(const glm::vec3& position);
 	PhysicsEntity *createPlayer(const glm::vec3& position);
 
+	b2Body* createPhysicsBody(float x, float y, b2BodyType bodyType);
+
 private:
+	b2World* currentWorldPtr;
 	IcatGame* icatGame;
 };
 

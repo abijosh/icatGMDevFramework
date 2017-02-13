@@ -16,7 +16,6 @@ PhysicsEntity::~PhysicsEntity()
 void PhysicsEntity::update(float deltaTime){
 	if (physicsBody->GetType() == b2_dynamicBody){
 		b2Vec2 b2dPos = physicsBody->GetPosition();
-		position.x = b2dPos.x;
-		position.y = b2dPos.y;
+		setPosition(b2dPos.x, b2dPos.y, 0.0f);
 	}
 }
