@@ -1,9 +1,8 @@
 //
 // Created by abijosh on 10/9/16.
 //
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include "UserInteraction.h"
+bool UserInteraction::changed = false;
 
 bool UserInteraction::left = false;
 bool UserInteraction::right = false;
@@ -37,10 +36,14 @@ UserInteraction::~UserInteraction()
 void UserInteraction::keyEvent(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	bool keypress = false;
-	if (action == GLFW_PRESS || action == GLFW_REPEAT)
+	if (action == GLFW_PRESS || action == GLFW_REPEAT){
 		keypress = true;
-	else if (action == GLFW_RELEASE)
+		changed = true;
+	}
+	else if (action == GLFW_RELEASE){
 		keypress = false;
+		changed = true;
+	}
 
 	switch (key)
 	{

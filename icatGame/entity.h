@@ -20,7 +20,7 @@ public:
 				 , glm::vec3 rotateAxis = glm::vec3(0, 0, 1));
 	~Entity();
 
-	virtual void update(float deltaTime){}
+	virtual void update(float deltaTime){ int i = 0; }
 
 	void updateTransformMatrix();
 

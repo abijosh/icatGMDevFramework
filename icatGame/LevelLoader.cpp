@@ -80,15 +80,29 @@ PhysicsEntity *LevelLoader::createBrick(const glm::vec3& position){
 }
 PhysicsEntity *LevelLoader::createPlatform(const glm::vec3& position){
 	Entity* entity = icatGame->createEntity("./assets/environment/platform.png");
-	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_dynamicBody);
+	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_staticBody);
 	entity->setPosition(position);
 	return new PhysicsEntity(entity, physicsBody);
 }
-PhysicsEntity *LevelLoader::createPlayer(const glm::vec3& position){
+Player *LevelLoader::createPlayer(const glm::vec3& position){
 	Entity* entity = icatGame->createEntity("./assets/gamePlay/player/idle/01.png");
 	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_dynamicBody);
 	entity->setPosition(position);
-	return new PhysicsEntity(entity, physicsBody);
+	return new Player( new PhysicsEntity(entity, physicsBody)
+		, createPistol(position));
+}
+
+Weapon* LevelLoader::createPistol(const glm::vec3& position){
+	Entity* entity = icatGame->createEntity("./assets/gamePlay/weapons/pistol.png");
+	b2Body *physicsBody = createPhysicsBody(20, 15, b2_dynamicBody);
+	entity->setPosition(20, 15, 0.0f);
+
+	Entity* aEntity = icatGame->createEntity("./assets/gamePlay/ammo/bullet.png");
+	b2Body *aPhysicsBody = createPhysicsBody(position.x + 20, position.y + 15, b2_dynamicBody);
+	aEntity->setPosition(5.0f, 0.0f, 0.0f);
+	return new Weapon(new PhysicsEntity(entity, physicsBody),
+		new Ammo(new PhysicsEntity(aEntity, aPhysicsBody)));
+
 }
 
 

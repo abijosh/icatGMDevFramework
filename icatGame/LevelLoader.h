@@ -7,6 +7,9 @@
 #include "IcatGame.h"
 #include "Scene.h"
 #include "PhysicsEntity.h"
+#include "Ammo.h"
+#include "Weapon.h"
+#include "Player.h"
 
 class LevelLoader
 {
@@ -22,7 +25,8 @@ private:
 
 	PhysicsEntity *createBrick(const glm::vec3& position);
 	PhysicsEntity *createPlatform(const glm::vec3& position);
-	PhysicsEntity *createPlayer(const glm::vec3& position);
+	Weapon* createPistol(const glm::vec3& position);
+	Player *createPlayer(const glm::vec3& position);
 
 	b2Body* createPhysicsBody(float x, float y, b2BodyType bodyType);
 

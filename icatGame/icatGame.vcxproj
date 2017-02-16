@@ -71,6 +71,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Ammo.h" />
     <ClInclude Include="bufferLoader.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="displayManager.h" />
@@ -81,6 +82,7 @@
     <ClInclude Include="material.h" />
     <ClInclude Include="modelLoader.h" />
     <ClInclude Include="PhysicsEntity.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="rawModel.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="entity.h" />
@@ -88,8 +90,10 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="texturedModel.h" />
     <ClInclude Include="userInteraction.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="bufferLoader.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="displayManager.cpp" />
@@ -100,6 +104,7 @@
     <ClCompile Include="material.cpp" />
     <ClCompile Include="modelLoader.cpp" />
     <ClCompile Include="PhysicsEntity.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="rawModel.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -107,6 +112,7 @@
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="texturedModel.cpp" />
     <ClCompile Include="userInteraction.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

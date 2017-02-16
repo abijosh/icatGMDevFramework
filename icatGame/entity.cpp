@@ -12,6 +12,7 @@ Entity::Entity(TexturedModel *TexturedModelPtr,
 		, rotateAngle(rotateAngle)
 		, rotateAxis(rotateAxis)
 {
+	parent = nullptr;
 	matrixUpdated = false;
     active = true;
 }
@@ -24,6 +25,8 @@ Entity::~Entity()
 
 void Entity::updateTransformMatrix() {
 	glm::mat4 referenceMatrix(1.0f);
+	if (parent)
+		referenceMatrix = parent->getTransformMatrix();
 	referenceMatrix = glm::translate(referenceMatrix, position);
 	referenceMatrix = glm::scale(referenceMatrix, scale);
 	transformMatrix = glm::rotate(referenceMatrix, glm::radians(rotateAngle), rotateAxis);
@@ -31,8 +34,11 @@ void Entity::updateTransformMatrix() {
 }
 
 glm::mat4& Entity::getTransformMatrix(){
-	if(!matrixUpdated)
+	if (!matrixUpdated){
 		updateTransformMatrix();
+		for (Entity* child : children)
+			child->updateTransformMatrix();
+	}
 	return transformMatrix;
 }
 
