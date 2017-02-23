@@ -2,6 +2,7 @@
 
 #include "IcatGame.h"
 #include "LevelLoader.h"
+#include "ContactListener.h"
 
 class Game
 {
@@ -24,5 +25,7 @@ private:
 
 	b2Vec2 gravity{ 0.0f, -9.80f };
 	b2World* physicsWorld;
+
+	ContactListener contactListener;
 };
 

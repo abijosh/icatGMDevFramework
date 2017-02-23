@@ -15,6 +15,8 @@ Game::~Game()
 
 void Game::initLevel(int levelNum){
 	physicsWorld = new b2World(gravity);
+	physicsWorld->SetContactListener(&contactListener);
+
 	currentScene = levelLoader->load(levelNum, physicsWorld);
 	if (currentScene){
 		icatGame->setScenePtr(currentScene);

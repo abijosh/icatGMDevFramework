@@ -74,6 +74,7 @@
     <ClInclude Include="Ammo.h" />
     <ClInclude Include="bufferLoader.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="ContactListener.h" />
     <ClInclude Include="displayManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Header.h" />
@@ -96,6 +97,7 @@
     <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="bufferLoader.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="displayManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IcatGame.cpp" />

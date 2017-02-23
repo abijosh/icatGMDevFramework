@@ -32,6 +32,9 @@ public:
 
 	void update(float deltaTime);
 
+	void startContact();
+	void endContact();
+
 private:
 	b2Vec2 velocity;
 };

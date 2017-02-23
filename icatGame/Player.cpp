@@ -9,6 +9,7 @@ Player::Player(PhysicsEntity* physicsEntity, Weapon* weapon)
 	jumpStep = 0;
 	direction = glm::vec3(0, 0, 0);
 	addChild(this->weapon);
+	physicsBody->SetUserData(this);
 }
 
 

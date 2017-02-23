@@ -10,6 +10,9 @@ public:
 	void updateTransformMatrix(){ int i = 0; }
 	virtual void update(float deltaTime);
 
+	virtual void startContact(){}
+	virtual void endContact(){}
+
 protected:
 	b2Body* physicsBody;
 };
