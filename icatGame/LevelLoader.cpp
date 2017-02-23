@@ -43,12 +43,13 @@ std::string LevelLoader::readLevelData(int levelNum){
 
 Scene* LevelLoader::createScene(std::string levelData){
 	Scene *scene = new Scene();
-	glm::vec3 position(0, 720, 0);
-	float offset = 40;
+	glm::vec3 position(0.0f, 74.0f, 0.0f);
+	float offset = 4.0f;
 	for (char c : levelData){
 		switch (c)
 		{
 		case '0':
+		case ' ':
 			position.x += offset;
 			break;
 		case '1':
@@ -60,11 +61,12 @@ Scene* LevelLoader::createScene(std::string levelData){
 			position.x += offset;
 			break;
 		case '3':
-			scene->addEntity(createPlayer(position));
+			createPlayer(position);
+			scene->addEntity(players[players.size()-1]);
 			position.x += offset;
 			break;
 		case '\n':
-			position.x = 0;
+			position.x = 2.f;
 			position.y -= offset;
 			break;
 		}
@@ -75,38 +77,37 @@ Scene* LevelLoader::createScene(std::string levelData){
 PhysicsEntity *LevelLoader::createBrick(const glm::vec3& position){
 	Entity* entity = icatGame->createEntity("./assets/environment/brick.png");
 	entity->setPosition(position);
-	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_staticBody);
+	b2Body *physicsBody = createPhysicsBody(position.x, position.y, 2.0f, 2.0f, b2_staticBody);
 	return new PhysicsEntity(entity, physicsBody);
 }
 PhysicsEntity *LevelLoader::createPlatform(const glm::vec3& position){
 	Entity* entity = icatGame->createEntity("./assets/environment/platform.png");
-	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_staticBody);
+	b2Body *physicsBody = createPhysicsBody(position.x, position.y, 2.0f, 2.0f, b2_staticBody);
 	entity->setPosition(position);
 	return new PhysicsEntity(entity, physicsBody);
 }
-Player *LevelLoader::createPlayer(const glm::vec3& position){
+void LevelLoader::createPlayer(const glm::vec3& position){
 	Entity* entity = icatGame->createEntity("./assets/gamePlay/player/idle/01.png");
-	b2Body *physicsBody = createPhysicsBody(position.x, position.y, b2_dynamicBody);
+	b2Body *physicsBody = createPhysicsBody(position.x, position.y, 1.0f, 1.0f, b2_dynamicBody);
 	entity->setPosition(position);
-	return new Player( new PhysicsEntity(entity, physicsBody)
-		, createPistol(position));
+	players.push_back( new Player( new PhysicsEntity(entity, physicsBody)
+		, createPistol(position)));
 }
 
 Weapon* LevelLoader::createPistol(const glm::vec3& position){
 	Entity* entity = icatGame->createEntity("./assets/gamePlay/weapons/pistol.png");
-	b2Body *physicsBody = createPhysicsBody(20, 15, b2_dynamicBody);
-	entity->setPosition(20, 15, 0.0f);
+	b2Body *physicsBody = createPhysicsBody(1.0f, 0.7f, 0.45f, 0.30f, b2_dynamicBody);
+	entity->setPosition(1.0f, 0.7f, 0.0f);
 
 	Entity* aEntity = icatGame->createEntity("./assets/gamePlay/ammo/bullet.png");
-	b2Body *aPhysicsBody = createPhysicsBody(position.x + 20, position.y + 15, b2_dynamicBody);
-	aEntity->setPosition(5.0f, 0.0f, 0.0f);
+	aEntity->setPosition(0.50f, 0.0f, 0.0f);
 	return new Weapon(new PhysicsEntity(entity, physicsBody),
-		new Ammo(new PhysicsEntity(aEntity, aPhysicsBody)));
+		AmmoData(aEntity, 2.0f, 1.5f, 0.3f, 0.1f, b2_dynamicBody, b2Vec2(10, 0)));
 
 }
 
 
-b2Body* LevelLoader::createPhysicsBody(float x, float y, b2BodyType bodyType) {
+b2Body* LevelLoader::createPhysicsBody(float x, float y, float halfWidth, float halfHeight, b2BodyType bodyType) {
 
 	b2BodyDef bodyDef;
 	bodyDef.type = bodyType;
@@ -114,7 +115,7 @@ b2Body* LevelLoader::createPhysicsBody(float x, float y, b2BodyType bodyType) {
 	b2Body* physicsBody = currentWorldPtr->CreateBody(&bodyDef);
 
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(20.0f, 20.0f);
+	boxShape.SetAsBox(halfWidth, halfHeight);
 
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;

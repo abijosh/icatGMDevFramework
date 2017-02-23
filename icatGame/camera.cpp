@@ -74,7 +74,7 @@ glm::mat4 Camera::modelMatrix(){
 	return retVal;
 }
 glm::mat4 Camera::projectionMatrix(){
-	return glm::ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight, 0.001f, 1000.0f);
+	return glm::ortho(0.0f, (float)windowWidth / 10.0f, 0.0f, (float)windowHeight / 10.0f, 0.001f, 1000.0f);
 }
 glm::mat4 Camera::viewMatrix(){
 	return orientation() *glm::translate(glm::mat4(), -m_position);

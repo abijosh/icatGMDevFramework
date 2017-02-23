@@ -15,7 +15,7 @@ Entity* ModelLoader::loadModel(const char* fileName){
 	Entity* retVal = nullptr;
 	int textureID = bufferLoader.loadTexture(fileName, &width, &height);
 	if (textureID >= 0) {
-		TexturedModel* texturedQuad = createTexturedQuad((float)width, (float)height, new Material(textureID, ShaderPtr));
+		TexturedModel* texturedQuad = createTexturedQuad((float)width / 20.0f, (float)height / 20.0f, new Material(textureID, ShaderPtr));
 
 		retVal = new(getAllignedSpace(sizeof(Entity), 16)) Entity(texturedQuad, glm::vec3(0.0f), glm::vec3(1.0f));
 
@@ -38,36 +38,36 @@ void ModelLoader::createBasicShader() {
 	ShaderPtr->createShader("./Shaders/vs.mvp.glsl", "./Shaders/fs.mvp.glsl");
 }
 
-TexturedModel* ModelLoader::createTexturedQuad(float width, float height, Material* MaterialPtr) {
+TexturedModel* ModelLoader::createTexturedQuad(float halfWidth, float halfHeight, Material* MaterialPtr) {
 
 	std::vector<float> positions;
 	std::vector<float> uv;
 	std::vector<int> indices;
 
 	//left top triangle
-	positions.push_back(0);
-	positions.push_back(0);
+	positions.push_back(-halfWidth);
+	positions.push_back(-halfHeight);
 	positions.push_back(0);
 	
 	uv.push_back(0);
 	uv.push_back(1);
 
-	positions.push_back(0);
-	positions.push_back(height);
+	positions.push_back(-halfWidth);
+	positions.push_back(halfHeight);
 	positions.push_back(0);
 	
 	uv.push_back(0);
 	uv.push_back(0);
 
-	positions.push_back(width);
-	positions.push_back(height);
+	positions.push_back(halfWidth);
+	positions.push_back(halfHeight);
 	positions.push_back(0);
 	
 	uv.push_back(1);
 	uv.push_back(0);
 
-	positions.push_back(width);
-	positions.push_back(0);
+	positions.push_back(halfWidth);
+	positions.push_back(-halfHeight);
 	positions.push_back(0);
 	
 	uv.push_back(1);
