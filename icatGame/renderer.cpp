@@ -71,6 +71,14 @@ void Renderer::renderEntity(Entity* EntityPointer){
 void Renderer::renderScene(Scene* scenePointer)
 {
 	auto entities = scenePointer->getEntities();
+	/*
+	std::vector<Entity*>::iterator itrCurr, itrEnd;
+	itrCurr = entities.begin();
+	itrEnd = entities.end();
+	for (; itrCurr < itrEnd; itrCurr++){
+		renderEntity(*itrCurr);
+	}
+	*/
 	for (Entity* EntityPointer : entities){
 		renderEntity(EntityPointer);
 	}

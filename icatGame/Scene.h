@@ -8,6 +8,7 @@ public:
 
 	void addEntity(Entity* entity);
 	std::vector<Entity*>& getEntities();
+	void erase(Entity* entity);
 
 private:
 	std::vector<Entity*> entities;

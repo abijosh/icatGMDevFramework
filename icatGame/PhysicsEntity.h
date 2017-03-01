@@ -13,6 +13,8 @@ public:
 	virtual void startContact(){}
 	virtual void endContact(){}
 
+	b2Body* getPhysicsBody(){ return physicsBody; }
+
 protected:
 	b2Body* physicsBody;
 };

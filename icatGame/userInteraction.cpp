@@ -35,8 +35,10 @@ UserInteraction::~UserInteraction()
 
 void UserInteraction::keyEvent(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
+	if (action == GLFW_REPEAT)
+		return;
 	bool keypress = false;
-	if (action == GLFW_PRESS || action == GLFW_REPEAT){
+	if (action == GLFW_PRESS){
 		keypress = true;
 		changed = true;
 	}

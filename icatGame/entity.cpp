@@ -15,6 +15,7 @@ Entity::Entity(TexturedModel *TexturedModelPtr,
 	parent = nullptr;
 	matrixUpdated = false;
     active = true;
+	scheduleToBeRemoved = false;
 }
 
 

@@ -19,8 +19,9 @@ void Ammo::update(float deltaTime){
 }
 
 void Ammo::startContact(){
-	velocity.x = 0;
-	physicsBody->SetGravityScale(1.0f);
+	//velocity.x *= -1;
+	deactivate();
+	scheduleToBeRemoved = true;
 }
 
 void Ammo::endContact(){

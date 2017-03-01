@@ -11,6 +11,7 @@ Game::Game(IcatGame* icatGame)
 
 Game::~Game()
 {
+	int i = 1;
 }
 
 void Game::initLevel(int levelNum){
@@ -26,6 +27,7 @@ void Game::initLevel(int levelNum){
 
 void Game::update(){
 	physicsWorld->Step(0.2f, 8, 3);
+	std::cout << physicsWorld->GetBodyCount() <<std::endl;
 
 	auto deltaTime = icatGame->getDeltaTime();
 	updateKeyEvents(deltaTime);
@@ -34,7 +36,16 @@ void Game::update(){
 	auto es = currentScene->getEntities();
 	for (auto* e : es){
 		e->update(deltaTime);
+		if (e->isScheduledToBeRemoved()){
+			toBeRemoved.push_back(e);
+		}
 	}
+
+	for (auto* remE : toBeRemoved){
+		physicsWorld->DestroyBody(((PhysicsEntity*)remE)->getPhysicsBody());
+		currentScene->erase(remE);
+	}
+	toBeRemoved.clear();
 
 }
 

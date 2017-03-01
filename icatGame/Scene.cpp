@@ -22,4 +22,11 @@ std::vector<Entity*>& Scene::getEntities()
 	return entities;
 }
 
+void Scene::erase(Entity* entity){
+	auto it = std::find(entities.begin(), entities.end(), entity);
+	if (it < entities.end()){
+		entities.erase(it);
+		//delete entity;
+	}
+}
 

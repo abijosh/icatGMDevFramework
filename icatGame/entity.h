@@ -101,8 +101,10 @@ public:
 	TexturedModel* getModelPointer();
 	glm::mat4& getTransformMatrix();
 
+	bool isScheduledToBeRemoved(){ return scheduleToBeRemoved; }
+
 protected:
-	bool active;
+	bool active, scheduleToBeRemoved;
 	glm::vec3 position, scale, rotateAxis;
 	float rotateAngle;
 	bool matrixUpdated;
