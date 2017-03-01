@@ -13,8 +13,9 @@ Weapon::~Weapon()
 }
 
 
-void Weapon::fire(b2World* physicsWorldPtr, Scene* scenePtr, glm::vec3 playerPosition){
-	b2Vec2 ammoPosition(playerPosition.x + position.x + ammoData.x,
+void Weapon::fire(b2World* physicsWorldPtr, Scene* scenePtr, 
+	glm::vec3 playerPosition, float playerDirection){
+	b2Vec2 ammoPosition(playerPosition.x + (playerDirection * (position.x + ammoData.x)),
 		playerPosition.y + position.y + ammoData.y);
 	b2BodyDef bodyDef;
 	bodyDef.type = ammoData.bodyType;
@@ -31,6 +32,7 @@ void Weapon::fire(b2World* physicsWorldPtr, Scene* scenePtr, glm::vec3 playerPos
 	physicsBody->CreateFixture(&boxFixtureDef);
 	physicsBody->SetLinearVelocity(b2Vec2(200, 0));
 	physicsBody->SetGravityScale(0);
-		
-	scenePtr->addEntity(new Ammo(new PhysicsEntity(ammoData.entity, physicsBody), ammoData.velocity));
+	b2Vec2 currBulletVelocity = ammoData.velocity;
+	currBulletVelocity.x *= playerDirection;
+	scenePtr->addEntity(new Ammo(new PhysicsEntity(ammoData.entity, physicsBody), currBulletVelocity));
 }

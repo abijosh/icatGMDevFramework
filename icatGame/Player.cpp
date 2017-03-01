@@ -22,14 +22,14 @@ void Player::update(float deltaTime){
 }
 
 void Player::moveLeft(float deltaTime){
-
+	setScale(-1.0f, 1.0f);
 	linearVelocity = physicsBody->GetLinearVelocity();
 	linearVelocity.x = (-speed) * deltaTime;
 	physicsBody->SetLinearVelocity(linearVelocity);
 }
 
 void Player::moveRight(float deltaTime){
-
+	setScale(1.0f, 1.0f);
 	linearVelocity = physicsBody->GetLinearVelocity();
 	linearVelocity.x = speed * deltaTime;
 	physicsBody->SetLinearVelocity(linearVelocity);
@@ -42,5 +42,5 @@ void Player::jump(float deltaTime){
 }
 
 void Player::fire(b2World* physicsWorldPtr, Scene* scenePtr){
-	weapon->fire(physicsWorldPtr, scenePtr, position);
+	weapon->fire(physicsWorldPtr, scenePtr, position, getScale().x);
 }

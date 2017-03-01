@@ -24,6 +24,8 @@ private:
 	Scene* createScene(std::string levelData);
 	std::string readLevelData(int levelNum);
 
+	PhysicsEntity *createEntryPortal(const glm::vec3& position);
+	PhysicsEntity *createExitPortal(const glm::vec3& position);
 	PhysicsEntity *createBrick(const glm::vec3& position);
 	PhysicsEntity *createPlatform(const glm::vec3& position);
 	Weapon* createPistol(const glm::vec3& position);

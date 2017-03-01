@@ -37,18 +37,15 @@ void Game::update(){
 	for (auto* e : es){
 		e->update(deltaTime);
 		if (e->isScheduledToBeRemoved()){
-			toBeRemoved.push_back(e);
+			removeEntity(e);
 		}
 	}
-
-	for (auto* remE : toBeRemoved){
-		physicsWorld->DestroyBody(((PhysicsEntity*)remE)->getPhysicsBody());
-		currentScene->erase(remE);
-	}
-	toBeRemoved.clear();
-
 }
 
+void Game::removeEntity(Entity* entity){
+	physicsWorld->DestroyBody(((PhysicsEntity*)entity)->getPhysicsBody());
+	currentScene->erase(entity);
+}
 
 void Game::updateMouseEvents(float deltaTime){
 	if (UserInteraction::mouseLeftButtonDown){

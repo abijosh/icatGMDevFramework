@@ -72,6 +72,13 @@ public:
 		matrixUpdated = false;
 	}
 
+	void setScale(float x, float y, float z = 1){
+		scale.x = x;
+		scale.y = y;
+		scale.z = z;
+		matrixUpdated = false;
+	}
+
 	glm::vec3 getScale(){
 		return scale;
 	}
