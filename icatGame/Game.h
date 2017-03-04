@@ -23,7 +23,7 @@ private:
 	IcatGame *icatGame;
 	Scene* currentScene;
 	LevelLoader* levelLoader;
-	std::vector<Player*> players;
+	Player* player;
 
 	b2Vec2 gravity{ 0.0f, -9.80f };
 	b2World* physicsWorld;

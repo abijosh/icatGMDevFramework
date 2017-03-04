@@ -76,6 +76,9 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="displayManager.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EntryPortal.h" />
+    <ClInclude Include="ExitPortal.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="IcatGame.h" />
@@ -84,6 +87,7 @@
     <ClInclude Include="modelLoader.h" />
     <ClInclude Include="PhysicsEntity.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="rawModel.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="entity.h" />
@@ -99,6 +103,9 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="displayManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EntryPortal.cpp" />
+    <ClCompile Include="ExitPortal.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IcatGame.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
@@ -107,6 +114,7 @@
     <ClCompile Include="modelLoader.cpp" />
     <ClCompile Include="PhysicsEntity.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="rawModel.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="entity.cpp" />

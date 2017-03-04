@@ -12,9 +12,11 @@ Entity::Entity(TexturedModel *TexturedModelPtr,
 		, rotateAngle(rotateAngle)
 		, rotateAxis(rotateAxis)
 {
+	entityType = NOT_SET;
 	parent = nullptr;
 	matrixUpdated = false;
     active = true;
+	lifeRemaining = -1.0f;
 	scheduleToBeRemoved = false;
 }
 
@@ -22,6 +24,17 @@ Entity::Entity(TexturedModel *TexturedModelPtr,
 Entity::~Entity()
 {
 	delete pTexturedModel;
+}
+
+void Entity::update(float deltaTime){
+	if (lifeRemaining > 0){
+		lifeRemaining -= deltaTime;
+		if (lifeRemaining < 0){
+			scheduleToBeRemoved = true;
+		}
+	}
+
+	for (Entity* child : children)child->update(deltaTime);
 }
 
 void Entity::updateTransformMatrix() {

@@ -20,7 +20,14 @@ public:
 				 , glm::vec3 rotateAxis = glm::vec3(0, 0, 1));
 	~Entity();
 
-	virtual void update(float deltaTime){ for (Entity* child : children)child->update(deltaTime); }
+	enum Type{
+		NOT_SET, WALL, PLATFORM, BULLET, WEAPON, PLAYER, ENEMY, PORTAL, NUMTYPES
+	};
+
+	void setType(Type type){ entityType = type; }
+	const Type& getType()const { return entityType; }
+
+	virtual void update(float deltaTime);
 
 	void updateTransformMatrix();
 
@@ -108,10 +115,12 @@ public:
 	TexturedModel* getModelPointer();
 	glm::mat4& getTransformMatrix();
 
+	void removeAfter(float time = 0.001f){ lifeRemaining = time; }
 	bool isScheduledToBeRemoved(){ return scheduleToBeRemoved; }
 
 protected:
-	bool active, scheduleToBeRemoved;
+	Type entityType;
+	bool active;
 	glm::vec3 position, scale, rotateAxis;
 	float rotateAngle;
 	bool matrixUpdated;
@@ -122,4 +131,7 @@ private:
 
 	std::vector<Entity*> children;
 	Entity* parent;
+
+	float lifeRemaining;
+	bool scheduleToBeRemoved;
 };

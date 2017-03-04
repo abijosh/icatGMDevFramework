@@ -2,7 +2,6 @@
 // Created by abijosh on 10/9/16.
 //
 #include "UserInteraction.h"
-bool UserInteraction::changed = false;
 
 bool UserInteraction::left = false;
 bool UserInteraction::right = false;
@@ -40,28 +39,30 @@ void UserInteraction::keyEvent(GLFWwindow* window, int key, int scancode, int ac
 	bool keypress = false;
 	if (action == GLFW_PRESS){
 		keypress = true;
-		changed = true;
 	}
 	else if (action == GLFW_RELEASE){
 		keypress = false;
-		changed = true;
 	}
 
 	switch (key)
 	{
 	case GLFW_KEY_LEFT:
+	case GLFW_KEY_A:
 		left = keypress;
 		break;
 
 	case GLFW_KEY_RIGHT:
+	case GLFW_KEY_D:
 		right = keypress;
 		break;
 
 	case GLFW_KEY_UP:
+	case GLFW_KEY_W:
 		up = keypress;
 		break;
 
 	case GLFW_KEY_DOWN:
+	case GLFW_KEY_S:
 		down = keypress;
 		break;
 

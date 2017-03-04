@@ -1,11 +1,14 @@
 #include "Ammo.h"
 
 
-Ammo::Ammo(PhysicsEntity* physicsEntity, b2Vec2 velocity)
+Ammo::Ammo(PhysicsEntity* physicsEntity, b2Vec2 velocity, float damage, float hitForce)
 	:PhysicsEntity(*physicsEntity)
 	, velocity(velocity)
+	, damage(damage)
+	, hitForce(hitForce)
 {
 	physicsBody->SetUserData(this);
+	setType(Entity::BULLET);
 }
 
 
@@ -18,12 +21,12 @@ void Ammo::update(float deltaTime){
 	PhysicsEntity::update(deltaTime); 
 }
 
-void Ammo::startContact(){
+void Ammo::startContact(PhysicsEntity* other){
 	//velocity.x *= -1;
 	deactivate();
-	scheduleToBeRemoved = true;
+	removeAfter();
 }
 
-void Ammo::endContact(){
+void Ammo::endContact(PhysicsEntity* other){
 
 }

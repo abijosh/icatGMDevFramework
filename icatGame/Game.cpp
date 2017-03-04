@@ -21,25 +21,25 @@ void Game::initLevel(int levelNum){
 	currentScene = levelLoader->load(levelNum, physicsWorld);
 	if (currentScene){
 		icatGame->setScenePtr(currentScene);
-		players = levelLoader->getPlayer();
+		player = levelLoader->getPlayer();
 	}
 }
 
 void Game::update(){
-	physicsWorld->Step(0.2f, 8, 3);
-	std::cout << physicsWorld->GetBodyCount() <<std::endl;
 
 	auto deltaTime = icatGame->getDeltaTime();
 	updateKeyEvents(deltaTime);
 	updateMouseEvents(deltaTime);
 
-	auto es = currentScene->getEntities();
+	auto es = currentScene->getDynamicEntities();
 	for (auto* e : es){
 		e->update(deltaTime);
 		if (e->isScheduledToBeRemoved()){
 			removeEntity(e);
 		}
 	}
+	physicsWorld->Step(0.2f, 8, 3);
+	std::cout << physicsWorld->GetBodyCount() <<std::endl;
 }
 
 void Game::removeEntity(Entity* entity){
@@ -48,21 +48,14 @@ void Game::removeEntity(Entity* entity){
 }
 
 void Game::updateMouseEvents(float deltaTime){
-	if (UserInteraction::mouseLeftButtonDown){
-		for (auto* player : players){
-			player->fire(physicsWorld, currentScene);
-		}
-	}
+	if (UserInteraction::mouseLeftButtonDown)
+		player->fire(physicsWorld, currentScene);
+	else if (player->isFiring())
+		player->stopFiring();
 }
 
 void Game::updateKeyEvents(float deltaTime){
-
-	if (UserInteraction::changed){
-		for (auto* player : players){
-			if (UserInteraction::left)	player->moveLeft(deltaTime);
-			if (UserInteraction::right)	player->moveRight(deltaTime);
-			if (UserInteraction::space)	player->jump(deltaTime);
-		}
-		//UserInteraction::changed = false;
-	}
+	if (UserInteraction::left)	player->moveLeft(deltaTime);
+	if (UserInteraction::right)	player->moveRight(deltaTime);
+	if (UserInteraction::space || UserInteraction::up)	player->jump(deltaTime);
 }

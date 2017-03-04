@@ -8,10 +8,15 @@ public:
 	Weapon(PhysicsEntity* physicsEntity, AmmoData ammoData);
 	~Weapon();
 
-	void fire(b2World* physicsWorldPtr, Scene* scenePtr, 
+	void startFire(b2World* physicsWorldPtr, Scene* scenePtr, 
 		glm::vec3 playerPosition, float playerDirection);
+	void stopFiring(){ currentRound = 0; }
 
-private:
+	void update(float deltaTime){}
+
+protected:
 	AmmoData ammoData;
+	int const maxRoundsPerFiring{ 1 };
+	int currentRound;
 };
 
