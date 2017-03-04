@@ -2,8 +2,9 @@
 #include <Box2D\Box2D.h>
 
 #include "Scene.h"
-#include "Portal.h"
-class EntryPortal : public Portal
+#include "PhysicsEntity.h"
+#include "Enemy.h"
+class EntryPortal : public PhysicsEntity
 {
 public:
 	EntryPortal(PhysicsEntity* physicsEntity, float maxTimeGapPerEntry, float minTimeGapPerEntry,
@@ -11,10 +12,13 @@ public:
 	~EntryPortal();
 	void update(float deltaTime);
 
-private:
-	void createEnemy();
+	void regenerate(Enemy* enemy);
 
 private:
+	void createEnemy();
+	void respawn(const glm::vec3 spawnPos);
+private:
+	std::vector<Enemy*> regeneratables;
 	EnemyData* enemyData;
 	Scene* scenePtr;
 	b2World* physicsWorld;

@@ -67,12 +67,14 @@ Scene* LevelLoader::createScene(std::string levelData){
 			break;
 		case '4':
 			position.x += offset * 0.5f;
-			scene->addDynamicEntity(createEntryPortal(position, scene));
+			createEntryPortal(position, scene);
+			scene->addDynamicEntity(entryPortal);
 			position.x += offset * 0.5f;
 			break;
 		case '5':
 			position.x += offset * 0.5f;
-			scene->addDynamicEntity(createExitPortal(position, scene));
+			createExitPortal(position, scene);
+			scene->addDynamicEntity(exitPortal);
 			position.x += offset * 0.5f;
 			break;
 		case '\n':
@@ -98,13 +100,13 @@ PhysicsEntity *LevelLoader::createPlatform(const glm::vec3& position){
 	b2Body *physicsBody = physicsBodyCreator(position.x, position.y, 2.0f, 2.0f, b2_staticBody, currentWorldPtr, true);
 	return new PhysicsEntity(entity, physicsBody);
 }
-EntryPortal *LevelLoader::createEntryPortal(const glm::vec3& position, Scene *scene){
+void LevelLoader::createEntryPortal(const glm::vec3& position, Scene *scene){
 	Entity* entity = icatGame->createEntity("./assets/environment/portal/portal.png");
 	entity->setType(Entity::PORTAL);
 	entity->setPosition(position);
 	b2Body *physicsBody = physicsBodyCreator(position.x, position.y + 4.0f, 4.0f, 2.0f, b2_staticBody, currentWorldPtr, true);
 
-	return new EntryPortal(new PhysicsEntity(entity, physicsBody), 0.3f, 0.8f, getEnemyData(), scene, currentWorldPtr);
+	entryPortal = new EntryPortal(new PhysicsEntity(entity, physicsBody), 0.3f, 0.8f, getEnemyData(), scene, currentWorldPtr);
 }
 
 EnemyData* LevelLoader::getEnemyData(){
@@ -112,12 +114,12 @@ EnemyData* LevelLoader::getEnemyData(){
 	EnemyData* enemyData = new EnemyData(entity, 0.9f, 0.8f, 10, 2, b2Vec2(20,0));
 	return enemyData;
 }
-PhysicsEntity *LevelLoader::createExitPortal(const glm::vec3& position, Scene *scene){
+void LevelLoader::createExitPortal(const glm::vec3& position, Scene *scene){
 	Entity* entity = icatGame->createEntity("./assets/environment/portal/fire.png");
 	entity->setType(Entity::PORTAL);
 	entity->setPosition(position);
 	b2Body *physicsBody = physicsBodyCreator(position.x, position.y - 4.0f, 4.0f, 2.0f, b2_staticBody, currentWorldPtr, true);
-	return new PhysicsEntity(entity, physicsBody);
+	exitPortal = new ExitPortal(new PhysicsEntity(entity, physicsBody), entryPortal);
 }
 void LevelLoader::createPlayer(const glm::vec3& position){
 	Entity* entity = icatGame->createEntity("./assets/gamePlay/player/idle/01.png");

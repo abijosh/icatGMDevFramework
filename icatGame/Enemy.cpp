@@ -5,10 +5,12 @@ enemy update - dont call base update
 
 enemy direction - dont check for wall
 */
-Enemy::Enemy(PhysicsEntity* physicsEntity, float health)
+Enemy::Enemy(PhysicsEntity* physicsEntity, float health, float healthIncreaseFactor)
 	:PhysicsEntity(*physicsEntity)
 	, health(health)
+	, healthIncreaseFactor(healthIncreaseFactor)
 {
+	setType(ENEMY);
 	physicsBody->SetUserData(this);
 	prevPos = physicsBody->GetPosition();
 	direction = randNegate(1);
@@ -25,13 +27,22 @@ void Enemy::update(float timeDelta){
 	PhysicsEntity::update(timeDelta);
 }
 
+void Enemy::setPosition(const glm::vec3 pos){
+	Entity::setPosition(pos);
+	physicsBody->SetTransform(b2Vec2(pos.x, pos.y), 0.0f);
+}
+
 void Enemy::setDirAndVel(){
 	b2Vec2 currPos = physicsBody->GetPosition();
 	b2Vec2 distTravelled = prevPos - currPos;
 	prevPos = currPos;
 	if (distTravelled.Length() < 0.1f){
+		b2Vec2 vel = physicsBody->GetLinearVelocity();
 		direction *= -1;
 	}
+	else
+		b2Vec2 vel = physicsBody->GetLinearVelocity();
+
 
 	b2Vec2 linearVel = physicsBody->GetLinearVelocity();
 	linearVel.x = direction;
@@ -48,10 +59,6 @@ void Enemy::startContact(PhysicsEntity* other){
 		direction *= -1;
 		contactRegister++;
 	}
-	/*if (other->getType() == Entity::ENEMY){
-		direction = ((Enemy*)other)->getDirection();
-		contactRegister++;
-	}*/
 	setScale(direction, 1);
 }
 
@@ -78,4 +85,15 @@ void Enemy::kill(Ammo* ammo){
 	hitForce *= hitDir.x * -1;
 	physicsBody->SetGravityScale(0.6f);
 	physicsBody->ApplyAngularImpulse(hitForce, true);
+}
+
+void Enemy::regen(const glm::vec3 pos, float health){
+	physicsBody->SetTransform(b2Vec2(pos.x, pos.y), physicsBody->GetAngle());
+	physicsBody->SetGravityScale(1.0f);
+	this->health = health;
+}
+
+void Enemy::setOffScreen(){
+	physicsBody->SetTransform(b2Vec2(90, 150), physicsBody->GetAngle());
+	physicsBody->SetGravityScale(0.0f);
 }

@@ -27,8 +27,8 @@ private:
 	Scene* createScene(std::string levelData);
 	std::string readLevelData(int levelNum);
 
-	EntryPortal *createEntryPortal(const glm::vec3& position, Scene *scene);
-	PhysicsEntity *createExitPortal(const glm::vec3& position, Scene *scene);
+	void createEntryPortal(const glm::vec3& position, Scene *scene);
+	void createExitPortal(const glm::vec3& position, Scene *scene);
 	PhysicsEntity *createBrick(const glm::vec3& position);
 	PhysicsEntity *createPlatform(const glm::vec3& position);
 	Weapon* createPistol(const glm::vec3& position);
@@ -42,5 +42,7 @@ private:
 	b2World* currentWorldPtr;
 	IcatGame* icatGame;
 	Player* player;
+	EntryPortal* entryPortal;
+	ExitPortal* exitPortal;
 };
 

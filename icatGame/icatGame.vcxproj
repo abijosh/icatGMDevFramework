@@ -87,7 +87,6 @@
     <ClInclude Include="modelLoader.h" />
     <ClInclude Include="PhysicsEntity.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Portal.h" />
     <ClInclude Include="rawModel.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="entity.h" />
@@ -114,7 +113,6 @@
     <ClCompile Include="modelLoader.cpp" />
     <ClCompile Include="PhysicsEntity.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="rawModel.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="entity.cpp" />

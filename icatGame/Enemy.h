@@ -22,7 +22,7 @@ struct EnemyData{
 class Enemy : public PhysicsEntity
 {
 public:
-	Enemy(PhysicsEntity* physicsEntity, float health);
+	Enemy(PhysicsEntity* physicsEntity, float health, float healthIncreaseFactor);
 	~Enemy();
 
 	void update(float timeDelta);
@@ -31,7 +31,14 @@ public:
 	void endContact(PhysicsEntity* other);
 	float getDirection(){ return direction; }
 
+	void setOffScreen();
+	void regen(const glm::vec3 pos, float health);
+	float getHealth(){ return health; }
+	float getHealthIncreaseFactor(){ return healthIncreaseFactor; }
+
 private:
+	void setPosition(const glm::vec3 pos);
+
 	void setDirAndVel();
 	void kill(Ammo* ammo);
 	void getHit(Ammo* ammo);
@@ -41,6 +48,6 @@ private:
 	bool hit;
 	float hitForce{ 0.0f };
 	int contactRegister{ 0 };
-	float health;
+	float health, healthIncreaseFactor;
 };
 

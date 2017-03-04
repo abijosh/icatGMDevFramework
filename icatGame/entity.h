@@ -42,7 +42,7 @@ public:
 		position.z = z;
 		matrixUpdated = false;
 	}
-	virtual void setPosition(glm::vec3 pos){
+	virtual void setPosition(const glm::vec3 pos){
 		position = pos;
 		matrixUpdated = false;
 	}
