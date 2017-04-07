@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -49,7 +49,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\lib-vc2013;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\lib\Release\Win32;\\server5\students\staff\abijosh\opengl\dev\Libraries\SOIL\lib;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D\Build\lib\vs2013;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\lib-vc2015;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\lib\Release\Win32;\\server5\students\staff\abijosh\opengl\dev\Libraries\SOIL\lib;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D\Build\lib\vs2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;soil.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -66,7 +66,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\lib-vc2015;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\lib\Release\Win32;\\server5\students\staff\abijosh\opengl\dev\Libraries\Simple OpenGL Image Library\lib;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D\Build\lib\vs2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>\\server5\students\staff\abijosh\opengl\dev\Libraries\glfw-3.2.1.bin.WIN32\lib-vc2015;\\server5\students\staff\abijosh\opengl\dev\Libraries\glew-1.12.0\lib\Release\Win32;\\server5\students\staff\abijosh\opengl\dev\Libraries\SOIL\lib;\\server5\students\staff\abijosh\opengl\dev\Libraries\Box2D\Box2D\Build\lib\vs2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
